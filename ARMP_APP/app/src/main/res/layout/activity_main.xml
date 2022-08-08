@@ -7,63 +7,81 @@
     android:weightSum="10"
     tools:context=".MainActivity"
     android:orientation="horizontal"
-    android:background="@color/yellow"
+    android:background="@color/white"
     android:id="@+id/backlayout"
     >
     <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.5"/>
+
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="128dp"
         android:layout_height="match_parent"
         android:layout_weight="7"
         android:orientation="vertical"
-        android:weightSum="10"
-        >
+        android:weightSum="10">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:src="@mipmap/ic_launcher_foreground"
-            />
+            android:src="@mipmap/ic_launcher_foreground" />
+
         <EditText
+            android:id="@+id/et_id"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.75"
-            android:id="@+id/et_id"
-            android:hint="생년월일을 입력하세요"
+            android:background="@drawable/border_layout"
+            android:hint="@string/input_birth"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textColorHint="@color/gray_100"
 
             />
+
         <EditText
+            android:id="@+id/et_pw"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.75"
-            android:id="@+id/et_pw"
-            android:hint="비밀번호를 입력하세요"/>
+            android:background="@drawable/border_layout"
+            android:hint="@string/input_unit"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textColorHint="@color/gray_100" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.75"
             android:orientation="horizontal"
             android:weightSum="5">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
+
             <Button
-                android:layout_width="0dp"
+                android:id="@+id/btn_login"
+                android:layout_width="326dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:id="@+id/btn_login"
-                android:text="로그인"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/white"
-                />
+                android:backgroundTint="@color/blue_700"
+                android:text="@string/button_login"
+                android:textColor="@color/white" />
         </LinearLayout>
 
     </LinearLayout>

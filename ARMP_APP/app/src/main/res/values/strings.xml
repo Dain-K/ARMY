@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">안출 (안전한 출타보고)</string>
+    <string name="input_birth">생년월일을 입력하세요</string>
+    <string name="input_unit">군번을 입력하세요</string>
+    <string name="button_login">로그인</string>
 </resources>
