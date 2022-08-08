@@ -3,4 +3,6 @@
     <string name="input_birth">생년월일을 입력하세요</string>
     <string name="input_unit">군번을 입력하세요</string>
     <string name="button_login">로그인</string>
+    <string name="todo">TODO</string>
+    <string name="todo_1">TODO_1</string>
 </resources>
