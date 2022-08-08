@@ -28,23 +28,26 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="0dp"
-            android:layout_weight="3"
-            android:src="@mipmap/ic_launcher_foreground" />
+            android:layout_weight="2"
+            android:src="@drawable/logo"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+        />
 
         <EditText
             android:id="@+id/et_id"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.75"
+            android:layout_weight="0.65"
             android:background="@drawable/border_layout"
             android:hint="@string/input_birth"
             android:importantForAutofill="no"
             android:inputType="number"
             android:maxLength="6"
             android:textColor="@color/black"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColorHint="@color/gray_100"
 
             />
@@ -53,13 +56,13 @@
             android:id="@+id/et_pw"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.75"
+            android:layout_weight="0.65"
             android:background="@drawable/border_layout"
             android:hint="@string/input_unit"
             android:importantForAutofill="no"
             android:inputType="number"
             android:textColor="@color/black"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColorHint="@color/gray_100" />
 
         <LinearLayout
