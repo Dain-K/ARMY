@@ -5,4 +5,5 @@
     <string name="button_login">로그인</string>
     <string name="todo">TODO</string>
     <string name="todo_1">TODO_1</string>
+    <string name="report_date">보고서 제출 날짜</string>
 </resources>

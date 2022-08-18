@@ -22,7 +22,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:src="@drawable/logo_back"/>
+            android:src="@drawable/logo"/>
 
     </LinearLayout>
     <LinearLayout
@@ -38,10 +38,11 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="날짜"
+            android:text="보고날짜"
+            android:gravity="center"
             android:autoSizeTextType="uniform"
             android:textStyle="bold"
-            android:layout_weight="1"/>
+            android:layout_weight="1.5"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -49,11 +50,131 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:hint="보고서 제출 날짜"
+            android:hint="@string/report_date"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/red_edittext"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="6"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="10">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="귀가시간"
+            android:gravity="center"
             android:autoSizeTextType="uniform"
             android:textStyle="bold"
-            android:layout_weight="7"/>
+            android:layout_weight="1.5"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:hint="귀가예정시간"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/red_edittext"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_weight="6"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="보고서작성"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:layout_weight="0.5"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:weightSum="10">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <EditText
+            android:layout_width="0dp"
+            android:hint="보고서를 작성해주세요."
+
+            android:gravity="center"
+            android:background="@drawable/red_edittext"
+            android:layout_height="match_parent"
+            android:layout_weight="8"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_weight="0.5">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo"
+            android:layout_weight="8"/>
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:checked="false"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:text="제출"
+            android:textColor="@color/blue_700"
+            android:autoSizeTextType="uniform"
+            android:backgroundTint="@color/gray"
+            />
+    </LinearLayout>
+
 
 
 
