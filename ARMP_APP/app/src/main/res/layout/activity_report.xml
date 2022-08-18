@@ -7,6 +7,13 @@
     android:orientation="vertical"
     android:weightSum="10"
     >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -14,137 +21,268 @@
         android:orientation="horizontal"
         android:weightSum="10"
         >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
         <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="390dp"
+            android:layout_height="53dp"
             android:layout_weight="8"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/logo"
+            tools:ignore="InefficientWeight,NestedWeights" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:layout_height="40dp">
+
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:background="@drawable/bg_gis_result_items_count"
+            android:id="@+id/tbResultItemCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110px"
+            android:textColor="#ffffff"
+            android:textSize="32px"
+            android:text="해병대 제 6여단"
+            tools:ignore="PxUsage" />
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="보고날짜"
-            android:gravity="center"
+            android:layout_marginLeft="30px"
             android:autoSizeTextType="uniform"
-            android:textStyle="bold"
-            android:layout_weight="1.5"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:hint="@string/report_date"
-            android:autoSizeTextType="uniform"
-            android:background="@drawable/red_edittext"
-            android:textStyle="bold"
             android:gravity="center"
-            android:layout_weight="6"/>
+            android:text="남승현"
+            android:textColor="@color/black"
+            android:textSize="44px"
+            android:textStyle="bold"
+            tools:ignore="PxUsage" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30px"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:text="21912216"
+            android:textColor="@color/black"
+            android:textSize="44px"
+            android:textStyle="bold"
+            tools:ignore="PxUsage" />
+
     </LinearLayout>
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-        />
+        android:gravity="center">
+        <View
+            android:background="@color/gray"
+            android:layout_width="330dp"
+            android:layout_height="3px"
+            tools:ignore="PxUsage" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:orientation="horizontal"
         android:weightSum="10">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="귀가시간"
-            android:gravity="center"
+            android:layout_weight="1.4"
             android:autoSizeTextType="uniform"
-            android:textStyle="bold"
-            android:layout_weight="1.5"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:hint="귀가예정시간"
-            android:autoSizeTextType="uniform"
-            android:background="@drawable/red_edittext"
-            android:textStyle="bold"
             android:gravity="center"
-            android:layout_weight="6"/>
+            android:text="@string/report_list_date"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="40px"
+            tools:ignore="PxUsage"/>
+
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="보고서작성"
-        android:autoSizeTextType="uniform"
-        android:gravity="center"
-        android:layout_weight="0.5"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_weight="0.5"
         android:orientation="horizontal"
         android:weightSum="10">
+
+        <TextView
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+        <TextView
+            android:layout_width="325dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@drawable/red_edittext"
+            android:gravity="center"
+            android:hint="@string/report_date"
+            tools:ignore="InefficientWeight,NestedWeights" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <EditText
-            android:layout_width="0dp"
-            android:hint="보고서를 작성해주세요."
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
 
-            android:gravity="center"
-            android:background="@drawable/red_edittext"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="8"/>
+            android:layout_weight="1.4"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:text="@string/report_list_time"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="40px"
+            tools:ignore="PxUsage"
+            />
+
     </LinearLayout>
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.2"/>
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+        <TextView
+            android:layout_width="325dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@drawable/red_edittext"
+            android:gravity="center"
+            android:hint="@string/report_list_time_explain"
+            tools:ignore="InefficientWeight,NestedWeights" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="11dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="InefficientWeight,NestedWeights" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:text="@string/report_list_title"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="40px"
+            tools:ignore="PxUsage" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.6"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="42dp"
+            android:layout_height="23dp"
+            tools:ignore="NestedWeights" />
+
+        <EditText
+            android:layout_width="325dp"
+            android:layout_height="238dp"
+            android:background="@drawable/red_edittext"
+            android:gravity="center"
+            android:hint="@string/report_list_explain"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:text="@string/report_list_location"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            tools:ignore="PxUsage"
+            />
+
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:weightSum="10"
         android:orientation="horizontal"
         android:layout_weight="0.5">
+
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/logo"
-            android:layout_weight="8"/>
-        <CheckBox
-            android:layout_width="0dp"
+            android:layout_width="31dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:checked="false"
-            />
+            tools:ignore="NestedWeights" />
+
+        <ImageView
+            android:layout_width="39dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/camera" />
+
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:background="@drawable/red_edittext"
+            android:gravity="center"
+            android:hint="@string/report_list_location_explain"
+            tools:ignore="InefficientWeight,NestedWeights" />
+
 
     </LinearLayout>
     <TextView
@@ -163,20 +301,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            />
+            tools:ignore="NestedWeights" />
+
         <Button
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="40dp"
             android:layout_weight="8"
-            android:text="제출"
-            android:textColor="@color/blue_700"
             android:autoSizeTextType="uniform"
-            android:backgroundTint="@color/gray"
-            />
+            android:backgroundTint="@color/blue_main"
+            android:text="@string/report_button"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>

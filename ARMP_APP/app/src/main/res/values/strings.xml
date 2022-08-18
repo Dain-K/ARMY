@@ -6,4 +6,12 @@
     <string name="todo">TODO</string>
     <string name="todo_1">TODO_1</string>
     <string name="report_date">보고서 제출 날짜</string>
+    <string name="report_list_date">보고 날짜</string>
+    <string name="report_list_time">귀가 시간</string>
+    <string name="report_list_time_explain">귀가 예정 시간</string>
+    <string name="report_list_title">보고서 작성</string>
+    <string name="report_list_explain">보고서를 작성해주세요.</string>
+    <string name="report_list_location">현재 위치</string>
+    <string name="report_list_location_explain">촬영 시 위치가 자동으로 업로드 됩니다.</string>
+    <string name="report_button">제출</string>
 </resources>
