@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         et_pw = findViewById(R.id.et_pw);
         btn_login = findViewById(R.id.btn_login);
         backlayout = findViewById(R.id.backlayout);
+        Intent intent = new Intent(getApplicationContext(),ReportActivity.class);
+        startActivity(intent);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         btn_login.setOnClickListener(new View.OnClickListener() {
