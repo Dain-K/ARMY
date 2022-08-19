@@ -43,7 +43,7 @@
             android:textColor="#ffffff"
             android:textSize="32px"
             android:text="해병대 제 6여단"
-            tools:ignore="PxUsage" />
+            tools:ignore="PxUsage,RtlHardcoded" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -54,7 +54,7 @@
             android:textColor="@color/black"
             android:textSize="44px"
             android:textStyle="bold"
-            tools:ignore="PxUsage" />
+            tools:ignore="PxUsage,RtlHardcoded" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
