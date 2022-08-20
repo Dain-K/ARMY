@@ -35,7 +35,7 @@ public class ImageActivity extends AppCompatActivity {
     private Button btn_save;
     private ImageView iv_image;
     private String mCurrentPhotoPath;
-
+    static String user_id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,8 +43,35 @@ public class ImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image);
         btn_save = findViewById(R.id.btn_save);
         iv_image = findViewById(R.id.iv_image);
+        Intent intent = getIntent();
+        user_id = intent.getStringExtra("user_id");
+        captureCamera();
+        loadImgArr();
 
 
+
+        //저장
+        btn_save.setOnClickListener(v -> {
+
+            try {
+
+                BitmapDrawable drawable = (BitmapDrawable) iv_image.getDrawable();
+                Bitmap bitmap = drawable.getBitmap();
+
+                //찍은 사진이 없으면
+                if (bitmap == null) {
+                    Toast.makeText(this, "저장할 사진이 없습니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    //저장
+                    saveImg();
+                    mCurrentPhotoPath = ""; //initialize
+                    finish();
+                }
+
+            } catch (Exception e) {
+                Log.w(TAG, "SAVE ERROR!", e);
+            }
+        });
 
     }
     private void captureCamera() {
@@ -58,7 +85,7 @@ public class ImageActivity extends AppCompatActivity {
 
             try {
                 //임시로 사용할 파일이므로 경로는 캐시폴더로
-                File tempDir = getCacheDir();
+                File tempDir = getExternalFilesDir(null);
 
                 //임시촬영파일 세팅
                 String timeStamp = new SimpleDateFormat("yyyyMMdd").format(new Date());
@@ -161,11 +188,12 @@ public class ImageActivity extends AppCompatActivity {
             switch (requestCode) {
                 case REQUEST_TAKE_PHOTO: {
                     if (resultCode == RESULT_OK) {
-
+                        ReportActivity.tv_path.setText(mCurrentPhotoPath);
+                        Log.e("imagePath",mCurrentPhotoPath);
                         File file = new File(mCurrentPhotoPath);
                         Bitmap bitmap = MediaStore.Images.Media
                                 .getBitmap(getContentResolver(), Uri.fromFile(file));
-
+                        Log.e("imageURL",Uri.fromFile(file).toString());
                         if (bitmap != null) {
                             ExifInterface ei = new ExifInterface(mCurrentPhotoPath);
                             int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
@@ -218,6 +246,6 @@ public class ImageActivity extends AppCompatActivity {
                 matrix, true);
     }
 
-   
+
 
 }

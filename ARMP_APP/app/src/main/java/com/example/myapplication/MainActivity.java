@@ -103,17 +103,16 @@ public class MainActivity extends AppCompatActivity {
                         unitCode = jsonObject.getInt("unit_code");
                         unitName = jsonObject.getString("unit_name");
                         ArmyUser user = new ArmyUser(uid, birth, userName, uClassCode, unitCode, unitName);
-                        Intent intent;
+
                         Toast.makeText(getApplicationContext(), userName+"님 환영합니다." , Toast.LENGTH_SHORT).show();
                         if (uClassCode >= 200) {
-                            intent = new Intent(getApplicationContext(), ReportViewActivity.class);
-
+                            Intent intent = new Intent(getApplicationContext(), ReportViewActivity.class);
+                            intent.putExtra("User", user);
+                            startActivity(intent);
                         } else {
-                            intent = new Intent(getApplicationContext(), ReportActivity.class);
-
+                            isReport();
                         }
-                        intent.putExtra("User", user);
-                        startActivity(intent);
+
                     }else{
                         Toast.makeText(getApplicationContext(),"로그인 실패",Toast.LENGTH_SHORT).show();
                     }
@@ -190,5 +189,62 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         checkPermission(); //권한체크
+    }
+
+    public void isReport() {
+        //php url 입력
+        String URL = "report_request.php";
+
+        StringRequest request = new StringRequest(Request.Method.POST, baseURL+URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //응답이 되었을때 response로 값이 들어옴
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    Boolean success = jsonObject.getBoolean("success");
+                    ArmyUser user = new ArmyUser(uid, birth, userName, uClassCode, unitCode, unitName);
+                    if(success){
+                        Intent intent = new Intent(getApplicationContext(),ReportreviseActivity.class);
+                        intent.putExtra("User", user);
+                        String desc = jsonObject.getString("content");
+                        intent.putExtra("desc",desc);
+                        String address = jsonObject.getString("uAddress");
+                        String report_time = jsonObject.getString("report_time");
+                        intent.putExtra("address",address);
+                        intent.putExtra("time",report_time);
+
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(getApplicationContext(),ReportActivity.class);
+                        intent.putExtra("User",user);
+                        startActivity(intent);
+                    }
+
+                }catch (Exception e){
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //에러나면 error로 나옴
+                Toast.makeText(getApplicationContext(), "에러:" + error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<String, String>();
+                //php로 설정값을 보낼 수 있음
+                param.put("user_id",user_birth);
+                return param;
+            }
+        };
+
+
+        request.setShouldCache(false);
+        requestQueue.add(request);
     }
 }
