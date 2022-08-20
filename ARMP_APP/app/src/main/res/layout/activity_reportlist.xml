@@ -44,6 +44,7 @@
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/tv_rUnitName"
             android:layout_width="44dp"
             android:layout_height="wrap_content"
             android:layout_weight="8"
@@ -78,17 +79,19 @@
                 tools:ignore="UseCompoundDrawables,UselessParent">
 
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:src="@drawable/calender"
                     tools:ignore="RtlHardcoded" />
 
                 <TextView
-                    android:layout_width="221dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="4dp"
+                    android:layout_weight="1.8"
                     android:gravity="center"
                     android:text="여기를 클릭하여 날짜를 선택하세요"
                     android:textSize="32px"

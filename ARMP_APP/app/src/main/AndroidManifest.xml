@@ -35,6 +35,9 @@
         </activity>
         <activity android:name=".ReportViewActivity"
             android:exported="true"/>
+        <activity android:name=".ImageActivity" />
+        <activity android:name=".ReportreviseActivity" />
+        <activity android:name=".ReportListActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

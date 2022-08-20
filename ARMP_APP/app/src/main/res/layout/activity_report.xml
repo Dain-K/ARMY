@@ -186,7 +186,7 @@
             android:background="@drawable/edittext_blue"
             android:gravity="center"
             android:textColorHint="@color/gray_100"
-            android:hint="귀가 시간 예 (18:20)"
+            android:hint="귀가 시간 예 (18시 20분-> 1820)"
             android:textSize="15sp"
             android:textColor="@color/black"
             tools:ignore="InefficientWeight,NestedWeights" />
@@ -299,6 +299,7 @@
             android:gravity="center"
             android:textSize="13dp"
             android:autoSizeTextType="uniform"
+            android:textColor="@color/black"
             android:text="@string/report_list_location_explain"
             tools:ignore="InefficientWeight,NestedWeights" />
 

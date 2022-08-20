@@ -48,10 +48,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.zip.DataFormatException;
 
-public class ReportActivity extends AppCompatActivity {
-    public static TextView tv_unitName,tv_userName,tv_userID,tv_reportDate,tv_path;
+public class ReportreviseActivity extends AppCompatActivity {
+    public static TextView tv_unitName,tv_userName,tv_userID,tv_reportDate,tv_path,tv_address;
     private EditText et_time, et_report;
 
     private Button btn_submit;
@@ -77,7 +76,7 @@ public class ReportActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        setContentView(R.layout.activity_reportrevise);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         Intent intent = getIntent();
@@ -92,18 +91,22 @@ public class ReportActivity extends AppCompatActivity {
 
             checkRunTimePermission();
         }
-        iv_photo = findViewById(R.id.iv_photo);
+        tv_address = findViewById(R.id.tv_address);
         tv_path = findViewById(R.id.tv_path);
         ArmyUser user = (ArmyUser) intent.getSerializableExtra("User");
+        String desc = intent.getStringExtra("desc");
+        tv_address.setText(intent.getStringExtra("address"));
         tv_unitName = findViewById(R.id.tv_unitName);
         tv_userName = findViewById(R.id.tv_userName);
         tv_userID = findViewById(R.id.tv_userID);
         tv_report = findViewById(R.id.tv_reportDate);
         et_time = findViewById(R.id.et_time);
+        et_time.setText(intent.getStringExtra("time"));
         et_report = findViewById(R.id.et_report);
         tv_reportDate = findViewById(R.id.tv_reportDate);
         btn_submit = findViewById(R.id.btn_submit);
         tv_unitName.setText(user.getUnitName());
+        et_report.setText(desc);
         tv_userName.setText(user.getUserName());
         //iv_photo.setOnClickListener(v->captureCamera());
         Log.e("ID",String.valueOf(user.getUserID()));
@@ -112,27 +115,20 @@ public class ReportActivity extends AppCompatActivity {
         Date date = new Date(now);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String getTime = sdf.format(date);
-        iv_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(),ImageActivity.class);
-                intent1.putExtra("user_id",user.getUserID());
-                startActivity(intent1);
-            }
-        });
+
         tv_reportDate.setText(getTime);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                submit();
+                update();
             }
         });
     }
-    public void submit() {
+    public void update() {
         //php url 입력
         String URL = "report_write.php";
-        gpsTracker = new GpsTracker(ReportActivity.this);
+        gpsTracker = new GpsTracker(ReportreviseActivity.this);
 
         double latitude = gpsTracker.getLatitude();
         double longitude = gpsTracker.getLongitude();
@@ -152,11 +148,11 @@ public class ReportActivity extends AppCompatActivity {
                     Boolean success  =jsonObject.getBoolean("success");
                     Log.e("success",String.valueOf(success));
                     if(success){
-                        Toast.makeText(getApplicationContext(),"보고서 제출 성공",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"보고서 수정 성공",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
                     }else{
-                        Toast.makeText(getApplicationContext(),"보고서 제출 실패",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"보고서 수정 실패",Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
 
@@ -227,13 +223,13 @@ public class ReportActivity extends AppCompatActivity {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
 
-                    Toast.makeText(ReportActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ReportreviseActivity.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
                     finish();
 
 
                 }else {
 
-                    Toast.makeText(ReportActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ReportreviseActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -243,7 +239,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private void showDialogForLocationServiceSetting() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(ReportActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(ReportreviseActivity.this);
         builder.setTitle("위치 서비스 비활성화");
         builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
                 + "위치 설정을 수정하실래요?");
@@ -269,9 +265,9 @@ public class ReportActivity extends AppCompatActivity {
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
-        int hasFineLocationPermission = ContextCompat.checkSelfPermission(ReportActivity.this,
+        int hasFineLocationPermission = ContextCompat.checkSelfPermission(ReportreviseActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
-        int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(ReportActivity.this,
+        int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(ReportreviseActivity.this,
                 Manifest.permission.ACCESS_COARSE_LOCATION);
 
 
@@ -289,19 +285,19 @@ public class ReportActivity extends AppCompatActivity {
         } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
 
             // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
-            if (ActivityCompat.shouldShowRequestPermissionRationale(ReportActivity.this, REQUIRED_PERMISSIONS[0])) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(ReportreviseActivity.this, REQUIRED_PERMISSIONS[0])) {
 
                 // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
-                Toast.makeText(ReportActivity.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(ReportreviseActivity.this, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.", Toast.LENGTH_LONG).show();
                 // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
-                ActivityCompat.requestPermissions(ReportActivity.this, REQUIRED_PERMISSIONS,
+                ActivityCompat.requestPermissions(ReportreviseActivity.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
 
 
             } else {
                 // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
                 // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
-                ActivityCompat.requestPermissions(ReportActivity.this, REQUIRED_PERMISSIONS,
+                ActivityCompat.requestPermissions(ReportreviseActivity.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
 

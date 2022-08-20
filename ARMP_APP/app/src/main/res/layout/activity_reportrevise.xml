@@ -261,7 +261,7 @@
             android:layout_weight="1.5"
             android:autoSizeTextType="uniform"
             android:gravity="center"
-            android:text="사진촬영"
+            android:text="이전 위치"
             android:textStyle="bold"
             android:textColor="@color/black"
             tools:ignore="PxUsage"
@@ -290,6 +290,7 @@
             android:src="@drawable/camera" />
 
         <TextView
+            android:id="@+id/tv_address"
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
