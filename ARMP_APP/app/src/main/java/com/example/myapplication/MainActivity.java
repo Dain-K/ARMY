@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -14,11 +15,27 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
     private EditText et_id,et_pw;
     private Button btn_login;
-    private String user_id, user_birth;
+    private static String user_id, user_birth,birth,unitName;
     private LinearLayout backlayout;
+    static int uid,uClassCode,unitCode;
+    static String userName;
+    static RequestQueue requestQueue;
 
 
     @Override
@@ -29,33 +46,23 @@ public class MainActivity extends AppCompatActivity {
         et_pw = findViewById(R.id.et_pw);
         btn_login = findViewById(R.id.btn_login);
         backlayout = findViewById(R.id.backlayout);
-        Intent intent = new Intent(getApplicationContext(),ReportActivity.class);
-        startActivity(intent);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        if(requestQueue == null){
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 user_id = et_id.getText().toString();
                 user_birth = et_pw.getText().toString();
-                LoginService loginService = new LoginService(getApplicationContext());
-                loginService.userLogin(user_id, user_birth, new LoginService.VolleyResponseLogin() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(getApplicationContext(),"로그인에 실패했습니다.",Toast.LENGTH_SHORT).show();
-                        Log.e("Main/Login",message);
-                    }
+                Log.e("id",user_id);
+                Log.e("birth",user_birth);
+                login();
 
-                    @Override
-                    public void onResponse(Boolean success) {
-                        if(success){
-                            Toast.makeText(getApplicationContext(),"로그인에 성공했습니다.",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),ReportActivity.class);
-                            intent.putExtra("uid",user_id);
-                            startActivity(intent);
-                        }
-                    }
-                });
             }
         });
         backlayout.setOnClickListener(new View.OnClickListener() {
@@ -70,4 +77,61 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    public void login() {
+        //php url 입력
+        String URL = "http://165.229.125.26/army_server/Login.php";
+
+        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //응답이 되었을때 response로 값이 들어옴
+                Toast.makeText(getApplicationContext(), "로그인 성공" , Toast.LENGTH_SHORT).show();
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    uid = jsonObject.getInt("userID");
+                    birth= jsonObject.getString("birth");
+                    userName = jsonObject.getString("userName");
+                    uClassCode= jsonObject.getInt("uclass_code");
+                    unitCode = jsonObject.getInt("unit_code");
+                    unitName = jsonObject.getString("unit_name");
+                    ArmyUser user = new ArmyUser(uid,birth,userName,uClassCode,unitCode,unitName);
+                    Intent intent;
+                    if(uClassCode >=200){
+                        intent = new Intent(getApplicationContext(),ReportViewActivity.class);
+
+                    }else{
+                        intent = new Intent(getApplicationContext(),ReportActivity.class);
+
+                    }
+                    intent.putExtra("User",user);
+                    startActivity(intent);
+                }catch (Exception e){
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //에러나면 error로 나옴
+                Toast.makeText(getApplicationContext(), "에러:" + error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> param = new HashMap<String, String>();
+                //php로 설정값을 보낼 수 있음
+                param.put("user_id",user_birth);
+                param.put("birth",user_id);
+                return param;
+            }
+        };
+
+
+        request.setShouldCache(false);
+        requestQueue.add(request);
+    }
+
 }

@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
     android:weightSum="10"
     >
 
@@ -36,7 +38,7 @@
 
         <TextView
             android:background="@drawable/bg_gis_result_items_count"
-            android:id="@+id/tbResultItemCount"
+            android:id="@+id/unitName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="110px"
