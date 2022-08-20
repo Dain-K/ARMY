@@ -137,7 +137,7 @@ public class ReportActivity extends AppCompatActivity {
         double latitude = gpsTracker.getLatitude();
         double longitude = gpsTracker.getLongitude();
 
-        String address = getCurrentAddress(latitude, longitude);
+        String address = getCurrentAddress(latitude, longitude); // 상세주소? 그걸로 바꼈어요
 
         Toast.makeText(getApplicationContext(), "현재위치 : "+address, Toast.LENGTH_LONG).show();
 
