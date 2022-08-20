@@ -153,7 +153,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="40px"
-            tools:ignore="PxUsage,UnusedAttribute"
+            tools:ignore="PxUsage"
             />
 
     </LinearLayout>
@@ -202,7 +202,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="40px"
-            tools:ignore="PxUsage,UnusedAttribute" />
+            tools:ignore="PxUsage" />
 
     </LinearLayout>
 
@@ -307,7 +307,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="8"
-            android:textSize="13sp"
+            android:autoSizeTextType="uniform"
             android:backgroundTint="@color/blue_main"
             android:text="@string/report_button"
             android:textColor="@color/white"

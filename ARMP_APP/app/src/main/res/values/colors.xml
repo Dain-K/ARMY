@@ -12,7 +12,7 @@
     <color name="green_700">#388E3C</color>
     <color name="yellow">#FFECB3</color>
     <color name="gray">#DCDCDC</color>
-    <color name="gray_100">#808080</color>
-    <color name="dark_gray">#A9A9A9</color>
-    <color name="mediumturquoise">#20B2AA</color>
+    <color name="gray_200">#808080</color>
+    <color name="gray_100">#A9A9A9</color>
+    <color name="blue_800">#000741</color>
 </resources>
