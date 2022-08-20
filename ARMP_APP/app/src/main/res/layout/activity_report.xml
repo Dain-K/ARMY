@@ -38,7 +38,7 @@
 
         <TextView
             android:background="@drawable/bg_gis_result_items_count"
-            android:id="@+id/unitName"
+            android:id="@+id/tv_unitName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="110px"
@@ -47,6 +47,7 @@
             android:text="해병대 제 6여단"
             tools:ignore="PxUsage,RtlHardcoded" />
         <TextView
+            android:id="@+id/tv_userName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="30px"
@@ -58,6 +59,7 @@
             android:textStyle="bold"
             tools:ignore="PxUsage,RtlHardcoded" />
         <TextView
+            android:id="@+id/tv_userID"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="30px"
@@ -123,11 +125,15 @@
             android:layout_weight="1"
             tools:ignore="NestedWeights" />
         <TextView
+            android:id="@+id/tv_reportDate"
             android:layout_width="325dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
+            android:textColorHint="@color/gray_100"
+            android:textColor="@color/black"
+            android:textSize="15sp"
             android:hint="@string/report_date"
             tools:ignore="InefficientWeight,NestedWeights" />
     </LinearLayout>
@@ -172,13 +178,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:ignore="NestedWeights" />
-        <TextView
+        <EditText
+            android:id="@+id/et_time"
             android:layout_width="325dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
-            android:hint="@string/report_list_time_explain"
+            android:textColorHint="@color/gray_100"
+            android:hint="귀가 시간 예 (18:20)"
+            android:textSize="15sp"
+            android:textColor="@color/black"
             tools:ignore="InefficientWeight,NestedWeights" />
     </LinearLayout>
 
@@ -220,11 +230,14 @@
             tools:ignore="NestedWeights" />
 
         <EditText
+            android:id="@+id/et_report"
             android:layout_width="325dp"
             android:layout_height="238dp"
+            android:textColor="@color/black"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
             android:hint="@string/report_list_explain"
+            android:textSize="15sp"
             android:importantForAutofill="no"
             android:inputType="text" />
 
@@ -248,7 +261,7 @@
             android:layout_weight="1.5"
             android:autoSizeTextType="uniform"
             android:gravity="center"
-            android:text="@string/report_list_location"
+            android:text="사진촬영"
             android:textStyle="bold"
             android:textColor="@color/black"
             tools:ignore="PxUsage"
@@ -282,6 +295,7 @@
             android:layout_weight="0.2"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
+            android:textSize="13dp"
             android:hint="@string/report_list_location_explain"
             tools:ignore="InefficientWeight,NestedWeights" />
 
@@ -306,6 +320,7 @@
             tools:ignore="NestedWeights" />
 
         <Button
+            android:id="@+id/btn_submit"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="8"
