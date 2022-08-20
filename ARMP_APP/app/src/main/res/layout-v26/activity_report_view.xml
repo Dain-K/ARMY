@@ -89,168 +89,66 @@
         android:weightSum="10">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="37dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:ignore="NestedWeights" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="101dp"
             android:layout_height="match_parent"
             android:layout_weight="1.4"
-            android:autoSizeTextType="uniform"
             android:gravity="center"
             android:text="@string/report_list_date"
+            android:background="@color/blue_700"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="40px"
-            tools:ignore="PxUsage"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:layout_width="38dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights" />
-        <TextView
-            android:layout_width="325dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:background="@drawable/edittext_blue"
-            android:gravity="center"
-            android:hint="@string/report_date"
-            tools:ignore="InefficientWeight,NestedWeights" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.4"
-            android:autoSizeTextType="uniform"
-            android:gravity="center"
-            android:text="@string/report_list_time"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="40px"
-            tools:ignore="PxUsage"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:layout_width="38dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights" />
-        <TextView
-            android:layout_width="325dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.2"
-            android:background="@drawable/edittext_blue"
-            android:gravity="center"
-            android:hint="@string/report_list_time_explain"
-            tools:ignore="InefficientWeight,NestedWeights" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="horizontal"
-        android:weightSum="10">
-
-        <TextView
-            android:layout_width="11dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:ignore="InefficientWeight,NestedWeights" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:autoSizeTextType="uniform"
-            android:gravity="center"
-            android:text="@string/report_list_title"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="40px"
             tools:ignore="PxUsage" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3.6"
-        android:weightSum="10">
-
         <TextView
-            android:layout_width="42dp"
-            android:layout_height="23dp"
-            tools:ignore="NestedWeights" />
-
-        <EditText
-            android:layout_width="325dp"
-            android:layout_height="238dp"
+            android:layout_width="211dp"
+            android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
-            android:hint="@string/report_list_explain"
-            android:importantForAutofill="no"
-            android:inputType="text" />
+            android:hint="@string/report_date" />
 
     </LinearLayout>
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="10"
+        android:layout_marginTop="2dp">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="37dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:ignore="NestedWeights" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="101dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:autoSizeTextType="uniform"
+            android:layout_weight="1.4"
             android:gravity="center"
-            android:text="@string/report_list_location"
+            android:text="@string/report_list_time"
+            android:background="@color/blue_700"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
-            tools:ignore="PxUsage"
-            />
+            tools:ignore="PxUsage" />
+
+        <TextView
+            android:layout_width="211dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/edittext_blue"
+            android:gravity="center"
+            android:hint="@string/report_list_time_explain" />
 
     </LinearLayout>
 
@@ -258,33 +156,80 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:weightSum="10"
+        android:layout_weight="3.5"
         android:orientation="horizontal"
-        android:layout_weight="0.5">
+        android:weightSum="10"
+        android:layout_marginTop="2dp">
 
         <TextView
-            android:layout_width="31dp"
+            android:layout_width="37dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:ignore="NestedWeights" />
 
-        <ImageView
-            android:layout_width="39dp"
+        <TextView
+            android:layout_width="101dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/camera" />
+            android:layout_weight="1.4"
+            android:gravity="center"
+            android:text="@string/report_list_title"
+            android:background="@color/blue_700"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="PxUsage" />
 
         <TextView
-            android:layout_width="280dp"
+            android:layout_width="211dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.2"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
-            android:hint="@string/report_list_location_explain"
-            tools:ignore="InefficientWeight,NestedWeights" />
-
+            android:hint="보고 내용" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="37dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
+
+        <TextView
+            android:layout_width="101dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.4"
+            android:gravity="center"
+            android:text="@string/report_list_location"
+            android:background="@color/blue_700"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:ignore="PxUsage" />
+
+        <TextView
+            android:layout_width="211dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/edittext_blue"
+            android:gravity="center"
+            android:hint="@string/report_list_location" />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
