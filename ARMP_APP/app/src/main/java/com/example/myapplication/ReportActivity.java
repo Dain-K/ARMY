@@ -39,6 +39,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -68,7 +70,7 @@ public class ReportActivity extends AppCompatActivity {
     private String mCurrentPhotoPath;
 
 
-        private static final int GPS_ENABLE_REQUEST_CODE = 2001;
+    private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
@@ -114,16 +116,6 @@ public class ReportActivity extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-
-                    BitmapDrawable drawable = (BitmapDrawable) ivCapture.getDrawable();
-                    Bitmap bitmap = drawable.getBitmap();
-
-
-
-                } catch (Exception e) {
-                    Log.w(TAG, "SAVE ERROR!", e);
-                }
 
                 submit();
             }
@@ -423,5 +415,45 @@ public class ReportActivity extends AppCompatActivity {
             }
         }
     }
+    //이미지저장 메소드
+    private void saveImg() {
 
+        try {
+            //저장할 파일 경로
+            File storageDir = new File(getFilesDir() + "/capture");
+            if (!storageDir.exists()) //폴더가 없으면 생성.
+                storageDir.mkdirs();
+
+            String filename = tv_userID.getText().toString() + ".jpg";
+
+            // 기존에 있다면 삭제
+            File file = new File(storageDir, filename);
+            boolean deleted = file.delete();
+            Log.w(TAG, "Delete Dup Check : " + deleted);
+            FileOutputStream output = null;
+
+            try {
+                output = new FileOutputStream(file);
+                BitmapDrawable drawable = (BitmapDrawable) ivCapture.getDrawable();
+                Bitmap bitmap = drawable.getBitmap();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 70, output); //해상도에 맞추어 Compress
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    assert output != null;
+                    output.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            Log.e(TAG, "Captured Saved");
+            Toast.makeText(this, "Capture Saved ", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.w(TAG, "Capture Saving Error!", e);
+            Toast.makeText(this, "Save failed", Toast.LENGTH_SHORT).show();
+
+        }
+    }
 }
