@@ -25,7 +25,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            tools:ignore="NestedWeights" />
 
         <ImageView
             android:layout_width="200dp"
@@ -45,7 +46,7 @@
             android:hint="@string/input_birth"
             android:importantForAutofill="no"
             android:inputType="number"
-            android:maxLength="20"
+            android:maxLength="6"
             android:textColor="@color/black"
             android:textColorHint="@color/gray_100"
             android:textSize="15sp"

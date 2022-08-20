@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout backlayout;
     static int uid,uClassCode,unitCode;
     static String userName;
-    static RequestQueue requestQueue;
-
+    private static RequestQueue requestQueue;
+    public final static String baseURL = "http://165.229.187.242/army_server/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,32 +79,38 @@ public class MainActivity extends AppCompatActivity {
     }
     public void login() {
         //php url 입력
-        String URL = "http://165.229.125.26/army_server/Login.php";
+        String URL = "Login.php";
 
-        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, baseURL+URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //응답이 되었을때 response로 값이 들어옴
-                Toast.makeText(getApplicationContext(), "로그인 성공" , Toast.LENGTH_SHORT).show();
+
                 try{
                     JSONObject jsonObject = new JSONObject(response);
-                    uid = jsonObject.getInt("userID");
-                    birth= jsonObject.getString("birth");
-                    userName = jsonObject.getString("userName");
-                    uClassCode= jsonObject.getInt("uclass_code");
-                    unitCode = jsonObject.getInt("unit_code");
-                    unitName = jsonObject.getString("unit_name");
-                    ArmyUser user = new ArmyUser(uid,birth,userName,uClassCode,unitCode,unitName);
-                    Intent intent;
-                    if(uClassCode >=200){
-                        intent = new Intent(getApplicationContext(),ReportViewActivity.class);
+                    Boolean success = jsonObject.getBoolean("success");
+                    if(success) {
+                        uid = jsonObject.getInt("userID");
+                        birth = jsonObject.getString("birth");
+                        userName = jsonObject.getString("userName");
+                        uClassCode = jsonObject.getInt("uclass_code");
+                        unitCode = jsonObject.getInt("unit_code");
+                        unitName = jsonObject.getString("unit_name");
+                        ArmyUser user = new ArmyUser(uid, birth, userName, uClassCode, unitCode, unitName);
+                        Intent intent;
+                        Toast.makeText(getApplicationContext(), userName+"님 환영합니다." , Toast.LENGTH_SHORT).show();
+                        if (uClassCode >= 200) {
+                            intent = new Intent(getApplicationContext(), ReportViewActivity.class);
 
+                        } else {
+                            intent = new Intent(getApplicationContext(), ReportActivity.class);
+
+                        }
+                        intent.putExtra("User", user);
+                        startActivity(intent);
                     }else{
-                        intent = new Intent(getApplicationContext(),ReportActivity.class);
-
+                        Toast.makeText(getApplicationContext(),"로그인 실패",Toast.LENGTH_SHORT).show();
                     }
-                    intent.putExtra("User",user);
-                    startActivity(intent);
                 }catch (Exception e){
 
                 }
