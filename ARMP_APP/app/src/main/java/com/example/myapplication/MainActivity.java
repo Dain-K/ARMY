@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -14,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,6 +35,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     private EditText et_id,et_pw;
     private Button btn_login;
+    public static final int REQUEST_PERMISSION = 11;
     private static String user_id, user_birth,birth,unitName;
     private LinearLayout backlayout;
     static int uid,uClassCode,unitCode;
@@ -42,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        checkPermission();
         et_id = findViewById(R.id.et_id);
         et_pw = findViewById(R.id.et_pw);
         btn_login = findViewById(R.id.btn_login);
@@ -140,4 +146,49 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    //권한 확인
+    public void checkPermission() {
+        int permissionCamera = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        int permissionRead = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permissionWrite = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        //권한이 없으면 권한 요청
+        if (permissionCamera != PackageManager.PERMISSION_GRANTED
+                || permissionRead != PackageManager.PERMISSION_GRANTED
+                || permissionWrite != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                Toast.makeText(this, "이 앱을 실행하기 위해 권한이 필요합니다.", Toast.LENGTH_SHORT).show();
+            }
+
+            ActivityCompat.requestPermissions(this, new String[]{
+                    Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_PERMISSION);
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        switch (requestCode) {
+            case REQUEST_PERMISSION: {
+                // 권한이 취소되면 result 배열은 비어있다.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Toast.makeText(this, "권한 확인", Toast.LENGTH_LONG).show();
+
+                } else {
+                    Toast.makeText(this, "권한 없음", Toast.LENGTH_LONG).show();
+                    finish(); //권한이 없으면 앱 종료
+                }
+            }
+        }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkPermission(); //권한체크
+    }
 }
