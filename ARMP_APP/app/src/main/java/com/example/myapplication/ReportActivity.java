@@ -65,9 +65,7 @@ public class ReportActivity extends AppCompatActivity {
     public static final int REQUEST_TAKE_PHOTO = 10;
     public static final int REQUEST_PERMISSION = 11;
 
-    private Button btnCamera, btnSave;
-    private ImageView ivCapture,iv_photo;
-    private String mCurrentPhotoPath;
+    private Button btnSave;
 
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
@@ -92,7 +90,6 @@ public class ReportActivity extends AppCompatActivity {
 
             checkRunTimePermission();
         }
-        iv_photo = findViewById(R.id.iv_photo);
         tv_path = findViewById(R.id.tv_path);
         ArmyUser user = (ArmyUser) intent.getSerializableExtra("User");
         tv_unitName = findViewById(R.id.tv_unitName);
@@ -112,14 +109,7 @@ public class ReportActivity extends AppCompatActivity {
         Date date = new Date(now);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String getTime = sdf.format(date);
-        iv_photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(),ImageActivity.class);
-                intent1.putExtra("user_id",user.getUserID());
-                startActivity(intent1);
-            }
-        });
+
         tv_reportDate.setText(getTime);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +134,7 @@ public class ReportActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, MainActivity.baseURL+URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //응답이 되었을때 response로 값이 들어옴
+                //응답이 되었을때 response 로 값이 들어옴
                 Log.e("why",response);
                 try{
 
@@ -166,7 +156,7 @@ public class ReportActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //에러나면 error로 나옴
+                //에러나면 error 로 나옴
                 Toast.makeText(getApplicationContext(), "에러:" + error.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
@@ -175,12 +165,11 @@ public class ReportActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<String, String>();
-                //php로 설정값을 보낼 수 있음
+                //php 로 설정값을 보낼 수 있음
                 param.put("user_user_id",tv_userID.getText().toString());
                 param.put("report_time",et_time.getText().toString());
                 param.put("content",et_report.getText().toString());
                 param.put("address",address);
-                param.put("img_url",String.valueOf("disk/img.jpg"));
 
                 return param;
             }
@@ -191,7 +180,7 @@ public class ReportActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
     /*
-     * ActivityCompat.requestPermissions를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
+     * ActivityCompat.requestPermissions 를 사용한 퍼미션 요청의 결과를 리턴받는 메소드입니다.
      */
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
@@ -300,7 +289,7 @@ public class ReportActivity extends AppCompatActivity {
 
             } else {
                 // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
-                // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
+                // 요청 결과는 onRequestPermissionResult 에서 수신됩니다.
                 ActivityCompat.requestPermissions(ReportActivity.this, REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE);
             }
@@ -312,7 +301,7 @@ public class ReportActivity extends AppCompatActivity {
 
     public String getCurrentAddress( double latitude, double longitude) {
 
-        //지오코더... GPS를 주소로 변환
+        //지오코더... GPS 를 주소로 변환
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
 
         List<Address> addresses;
@@ -375,92 +364,6 @@ public class ReportActivity extends AppCompatActivity {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
-    private void captureCamera() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        // 인텐트를 처리 할 카메라 액티비티가 있는지 확인
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 
-            // 촬영한 사진을 저장할 파일 생성
-            File photoFile = null;
-
-            try {
-                //임시로 사용할 파일이므로 경로는 캐시폴더로
-                File tempDir = getCacheDir();
-
-                //임시촬영파일 세팅
-                String timeStamp = new SimpleDateFormat("yyyyMMdd").format(new Date());
-                String imageFileName = "Capture_" + timeStamp + "_"+tv_userID.getText().toString(); //ex) Capture_20201206_
-
-                File tempImage = File.createTempFile(
-                        imageFileName,  /* 파일이름 */
-                        ".jpg",         /* 파일형식 */
-                        tempDir      /* 경로 */
-                );
-
-                // ACTION_VIEW 인텐트를 사용할 경로 (임시파일의 경로)
-                mCurrentPhotoPath = tempImage.getAbsolutePath();
-
-                photoFile = tempImage;
-
-            } catch (IOException e) {
-                //에러 로그는 이렇게 관리하는 편이 좋다.
-                Log.w(TAG, "파일 생성 에러!", e);
-            }
-
-            //파일이 정상적으로 생성되었다면 계속 진행
-            if (photoFile != null) {
-                //Uri 가져오기
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        getPackageName() + ".fileprovider",
-                        photoFile);
-                //인텐트에 Uri담기
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-
-                //인텐트 실행
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-            }
-        }
-    }
-    //이미지저장 메소드
-    private void saveImg() {
-
-        try {
-            //저장할 파일 경로
-            File storageDir = new File(getFilesDir() + "/capture");
-            if (!storageDir.exists()) //폴더가 없으면 생성.
-                storageDir.mkdirs();
-
-            String filename = tv_userID.getText().toString() + ".jpg";
-
-            // 기존에 있다면 삭제
-            File file = new File(storageDir, filename);
-            boolean deleted = file.delete();
-            Log.w(TAG, "Delete Dup Check : " + deleted);
-            FileOutputStream output = null;
-
-            try {
-                output = new FileOutputStream(file);
-                BitmapDrawable drawable = (BitmapDrawable) ivCapture.getDrawable();
-                Bitmap bitmap = drawable.getBitmap();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 70, output); //해상도에 맞추어 Compress
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    assert output != null;
-                    output.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            Log.e(TAG, "Captured Saved");
-            Toast.makeText(this, "Capture Saved ", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Log.w(TAG, "Capture Saving Error!", e);
-            Toast.makeText(this, "Save failed", Toast.LENGTH_SHORT).show();
-
-        }
-    }
 }

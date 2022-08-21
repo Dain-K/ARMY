@@ -87,14 +87,18 @@
                     android:src="@drawable/calender"
                     tools:ignore="RtlHardcoded" />
 
-                <TextView
+                <Button
+                    android:id="@+id/date_picker_btn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="4dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.75"
                     android:gravity="center"
                     android:text="여기를 클릭하여 날짜를 선택하세요"
                     android:textSize="32px"
+                    android:textColor="@color/gray_200"
+                    android:backgroundTint="@color/white"
+                    style="?android:attr/borderlessButtonStyle"
                     tools:ignore="HardcodedText,PxUsage,RtlHardcoded,UnusedAttribute" />
             </LinearLayout>
 
@@ -129,6 +133,7 @@
            android:layout_weight="1"
            tools:ignore="NestedWeights" />
         <ListView
+            android:id="@+id/listview"
             android:background="@drawable/edittext_blue"
             android:layout_width="0dp"
             android:layout_height="match_parent"

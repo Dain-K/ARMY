@@ -3,12 +3,11 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 import android.view.View;
+
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
-
-import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 public class ReportViewActivity extends AppCompatActivity {
     RadioGroup radioGroup;
@@ -32,7 +31,12 @@ public class ReportViewActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
+
     }
+
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
