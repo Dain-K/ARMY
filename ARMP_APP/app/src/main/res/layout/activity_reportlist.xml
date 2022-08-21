@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
+    android:backgroundTint="@color/white"
+    android:background="@color/white"
     >
 
     <TextView
@@ -50,9 +52,9 @@
             android:layout_weight="8"
             android:autoSizeTextType="uniform"
             android:background="@drawable/bg_gis_result_items_count_rect"
-            android:textColor="@color/white"
             android:gravity="center"
             android:text="해병대 제 6 여단"
+            android:textColor="@color/white"
             tools:ignore="UnusedAttribute" />
 
     </LinearLayout>
@@ -105,6 +107,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_lookup"
             android:layout_width="56dp"
             android:layout_height="42dp"
             android:layout_marginStart="5dp"
