@@ -17,7 +17,9 @@
              android:layout_width="0dp"
              android:layout_height="match_parent"
              android:layout_weight="1.5"
+             android:textColor="@color/black"
              android:gravity="center"
+             android:textSize="14dp"
              android:text="사용자 군번" />
 
          <TextView
@@ -26,14 +28,17 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
                 android:text="보고 날짜"
-                android:autoSizeTextType="uniform"
+                android:textColor="@color/black"
+                android:textSize="14dp"
                 android:gravity="center"/>
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:text="귀가 시간"
+                android:textSize="14dp"
                 android:gravity="center"/>
             <CheckBox
                 android:id="@+id/ck_report"
@@ -41,7 +46,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="센싱 데이터"
-                android:gravity="center"/>
+                android:enabled="false"
+                android:gravity="center"
+                android:clickable="false" />
         </LinearLayout>
 
 
