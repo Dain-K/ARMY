@@ -130,6 +130,12 @@ public class ReportListActivity extends AppCompatActivity {
 
     } // OnCreate
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lookUp();
+    }
+
     public void lookUp() {
         //php url 입력
         String URL = "report_list.php";

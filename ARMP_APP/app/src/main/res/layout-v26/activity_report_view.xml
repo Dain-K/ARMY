@@ -139,6 +139,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
+            android:textColor="@color/black"
             android:hint="@string/report_date" />
 
     </LinearLayout>
@@ -177,6 +178,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
+            android:textColor="@color/black"
             android:hint="@string/report_list_time_explain" />
 
     </LinearLayout>
@@ -214,6 +216,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
+            android:textColor="@color/black"
             android:hint="보고 내용" />
 
     </LinearLayout>
@@ -250,6 +253,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
             android:gravity="center"
+            android:textColor="@color/black"
             android:hint="@string/report_list_location" />
 
     </LinearLayout>
@@ -282,7 +286,7 @@
                 android:id="@+id/rg_btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="제출완료"
+                android:text="합격"
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:textStyle="bold"
@@ -293,7 +297,7 @@
                 android:id="@+id/rg_btn2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="미제출"
+                android:text="불합격"
                 android:textColor="@color/black"
                 android:textSize="15dp"
                 android:textStyle="bold"
@@ -320,6 +324,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="8"
+            android:id="@+id/btn_confirm"
             android:autoSizeTextType="uniform"
             android:backgroundTint="@color/blue_main"
             android:text="@string/report_button"
