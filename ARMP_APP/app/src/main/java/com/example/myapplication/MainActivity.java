@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), userName+"님 환영합니다." , Toast.LENGTH_SHORT).show();
                         if (uClassCode >= 200) {
-                            Intent intent = new Intent(getApplicationContext(), ReportViewActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), ReportListActivity.class);
                             intent.putExtra("User", user);
                             startActivity(intent);
                         } else {
@@ -202,10 +202,12 @@ public class MainActivity extends AppCompatActivity {
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     Boolean success = jsonObject.getBoolean("success");
+                    Log.e("isReport? ",success.toString());
                     ArmyUser user = new ArmyUser(uid, birth, userName, uClassCode, unitCode, unitName);
                     if(success){
                         Intent intent = new Intent(getApplicationContext(),ReportreviseActivity.class);
                         intent.putExtra("User", user);
+                        Log.e("User",user.toString());
                         String desc = jsonObject.getString("content");
                         intent.putExtra("desc",desc);
                         String address = jsonObject.getString("uAddress");
@@ -215,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
                         startActivity(intent);
                     }else{
+                        Log.e("User",user.toString());
                         Intent intent = new Intent(getApplicationContext(),ReportActivity.class);
                         intent.putExtra("User",user);
                         startActivity(intent);
