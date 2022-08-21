@@ -119,10 +119,63 @@
     </LinearLayout>
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"/>
+        android:layout_weight="0.5"
+        android:weightSum="10">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:weightSum="5">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:layout_marginRight="1dp"
+                android:background="@drawable/border_layout"
+                android:textColor="@color/black"
+                android:text="군번"
+                android:gravity="center"
+                android:autoSizeTextType="uniform"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:text="제출날짜"
+                android:layout_marginRight="1dp"
+                android:gravity="center"
+                android:background="@drawable/border_layout"
+                android:autoSizeTextType="uniform"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="귀가시간"
+                android:layout_marginRight="1dp"
+                android:gravity="center"
+                android:background="@drawable/border_layout"
+                android:textColor="@color/black"
+                android:autoSizeTextType="uniform"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/border_layout"
+                android:textColor="@color/black"
+                android:text="확인여부"
+                android:autoSizeTextType="uniform"/>
+        </LinearLayout>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
