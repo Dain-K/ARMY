@@ -66,6 +66,7 @@ public class ReportViewActivity extends AppCompatActivity {
                 }
             }
         });
+        reportView();
 
     }
     public void reportView() {
