@@ -44,17 +44,38 @@ public class ListViewAdapter extends BaseAdapter {
         tv_time= v.findViewById(R.id.tv_time);
         ck_report= v.findViewById(R.id.ck_report);
         tv_uid.setText(listViewItemList.get(position).getUid());
+        tv_date.setText(listViewItemList.get(position).getReport_date());
+        tv_time.setText(listViewItemList.get(position).getReport_time());
         tv_uid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,ReportViewActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("user_id",tv_uid.getText().toString());
-                intent.putExtra("report_date",tv_date.getText().toString());
+                intent.putExtra("date",tv_date.getText().toString());
                 context.startActivity(intent);
             }
         });
-        tv_date.setText(listViewItemList.get(position).getReport_date());
-        tv_time.setText(listViewItemList.get(position).getReport_time());
+        tv_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ReportViewActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("user_id",tv_uid.getText().toString());
+                intent.putExtra("date",tv_date.getText().toString());
+                context.startActivity(intent);
+            }
+        });
+        tv_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ReportViewActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("user_id",tv_uid.getText().toString());
+                intent.putExtra("date",tv_date.getText().toString());
+                context.startActivity(intent);
+            }
+        });
 
         if(listViewItemList.get(position).getIsCheck()==0){
             ck_report.setText("미확인");
@@ -62,6 +83,7 @@ public class ListViewAdapter extends BaseAdapter {
             ck_report.setText("불합격");
         }else{
             ck_report.setText("합격");
+            ck_report.setChecked(true);
         }
         return v;
     }

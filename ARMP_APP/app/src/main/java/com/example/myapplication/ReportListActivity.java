@@ -106,7 +106,8 @@ public class ReportListActivity extends AppCompatActivity {
                         y = year;
                         m = month+1;
                         d = dayOfMonth;
-                        String set_date = y+"/"+m+"/"+d;
+                        String set_date = String.format("%04d%02d%02d",y,m,d);
+
                         button.setText(set_date);
                         Log.e("date", set_year+set_month+set_day);
                     }
@@ -133,58 +134,64 @@ public class ReportListActivity extends AppCompatActivity {
         //php url 입력
         String URL = "report_list.php";
 
-
-        JsonArrayRequest jsonArrayRequest  = new JsonArrayRequest(Request.Method.POST, MainActivity.baseURL + URL, null, new Response.Listener<JSONArray>() {
+        StringRequest request = new StringRequest(Request.Method.POST, MainActivity.baseURL+URL, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONArray response) {
-                String uid = "";
-                Log.e("response",response.toString());
-                String report_date = "";
-                String report_time = "";
-                int isCheck = 0;
+            public void onResponse(String response) {
+                //응답이 되었을때 response로 값이 들어옴
+                item_list = new ArrayList<>();
                 try{
-                    for(int i = 0 ; i<response.length();i++){
-                        JSONObject jsonObject = response.getJSONObject(i);
-                        Log.e("object",jsonObject.toString());
-                        uid = jsonObject.getString("user_user_id");
+                    JSONArray arr= new JSONArray(response);
+                    Log.e("response",response);
+                    String uid = "";
+                    String report_date = "";
+                    String report_time = "";
+                    int isCheck=0;
+                    for(int i = 0 ; i<arr.length();i++){
+
+                        JSONObject jsonObject = arr.getJSONObject(i);
+                        Log.e("?",jsonObject.toString());
+                        uid  = jsonObject.getString("user_user_id");
                         report_date = jsonObject.getString("report_date");
                         report_time = jsonObject.getString("report_time");
-                        isCheck = jsonObject.getInt("report_checko");
-                        ListViewItem listViewItem = new ListViewItem();
-                        listViewItem.setIsCheck(isCheck);
-                        listViewItem.setReport_time(report_time);
-                        listViewItem.setReport_date(report_date);
-                        listViewItem.setUid(uid);
-                        Log.e("item",listViewItem.toString());
-                        item_list.add(listViewItem);
+                        isCheck = jsonObject.getInt("report_check");
+                        ListViewItem item = new ListViewItem();
+                        item.setUid(uid);
+                        item.setReport_date(report_date);
+                        item.setIsCheck(isCheck);
+                        item.setReport_time(report_time);
+                        item_list.add(item);
                     }
-
                     listViewAdapter = new ListViewAdapter(getApplicationContext(),item_list);
                     listView.setAdapter(listViewAdapter);
+
                 }catch (Exception e){
 
                 }
-            }},
-                new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
-                    Log.e("error",error.toString());
-                }
-        }){
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //에러나면 error로 나옴
+                Toast.makeText(getApplicationContext(), "에러:" + error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> param = new HashMap<String, String>();
                 //php로 설정값을 보낼 수 있음
-                param.put("unit_unit_code",String.valueOf(armyUser.getUnitCode()));
-                param.put("select_date",set_year+set_month+set_day);
-                Log.e("?",param.get("select_date"));
-                return param;
-            }};
-        Log.e("unit_code",String.valueOf(armyUser.getUnitCode()));
-        Log.e("report_date",set_year+set_month+set_day);
 
-        jsonArrayRequest.setShouldCache(false);
-        requestQueue.add(jsonArrayRequest);
+                param.put("unit_unit_code",String.valueOf(armyUser.getUnitCode()));
+                param.put("select_date",button.getText().toString());
+                Log.e("date",button.getText().toString());
+                return param;
+            }
+        };
+
+
+        request.setShouldCache(false);
+        requestQueue.add(request);
     }
 } // ReportListActivity

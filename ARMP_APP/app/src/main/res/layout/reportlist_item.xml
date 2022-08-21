@@ -25,6 +25,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="보고 날짜"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"/>
             <TextView
                 android:id="@+id/tv_time"
