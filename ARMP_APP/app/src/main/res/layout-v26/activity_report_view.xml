@@ -58,6 +58,7 @@
             tools:ignore="PxUsage" />
 
         <TextView
+            android:id="@+id/view_name"
             android:layout_width="211dp"
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
@@ -95,6 +96,7 @@
             tools:ignore="PxUsage" />
 
         <TextView
+            android:id="@+id/view_uid"
             android:layout_width="211dp"
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
@@ -132,6 +134,7 @@
             tools:ignore="PxUsage" />
 
         <TextView
+            android:id="@+id/view_reportdate"
             android:layout_width="211dp"
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
@@ -169,6 +172,7 @@
             tools:ignore="PxUsage" />
 
         <TextView
+            android:id="@+id/view_time"
             android:layout_width="211dp"
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
@@ -205,6 +209,7 @@
             tools:ignore="PxUsage" />
 
         <TextView
+            android:id="@+id/view_content"
             android:layout_width="211dp"
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
@@ -240,6 +245,7 @@
             tools:ignore="PxUsage" />
 
         <TextView
+            android:id="@+id/view_location"
             android:layout_width="211dp"
             android:layout_height="match_parent"
             android:background="@drawable/edittext_blue"
