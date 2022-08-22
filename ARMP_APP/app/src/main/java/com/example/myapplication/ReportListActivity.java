@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -76,6 +77,8 @@ public class ReportListActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reportlist);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         Intent intent= getIntent();
         item_list = new ArrayList<>();
         armyUser = (ArmyUser) intent.getSerializableExtra("User");

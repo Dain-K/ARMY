@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -45,6 +46,8 @@ public class ReportViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_view);
         Intent intent = getIntent();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         user_id = intent.getStringExtra("user_id");
         date = intent.getStringExtra("date");
         view_name = findViewById(R.id.view_name);
